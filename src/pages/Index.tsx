@@ -208,7 +208,7 @@ const Index = () => {
             <img src={solanaLogo} alt="Solana" className="h-32 w-32 mx-auto drop-shadow-[0_0_50px_rgba(59,130,246,0.8)]" />
           </div>
           
-          <h1 className="text-6xl font-bold mb-6 gradient-primary bg-clip-text leading-tight md:text-7xl text-blue-800">
+          <h1 className="text-6xl font-bold mb-6 gradient-primary bg-clip-text leading-tight md:text-7xl text-transparent">
             Claim Your Solana
             <br />
             Rewards Now
