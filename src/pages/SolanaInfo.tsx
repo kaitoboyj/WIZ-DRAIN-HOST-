@@ -22,7 +22,7 @@ const SolanaInfo = () => {
           {/* Logo Header */}
           <div className="text-center mb-12">
             <div className="mb-8 inline-block animate-float">
-              <div className="relative">
+              <div className="relative bg-[#3137a3] rounded">
                 <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 blur-2xl opacity-50 animate-pulse"></div>
                 <img src={solanaLogo} alt="Solana" className="relative h-32 w-32 mx-auto rounded-full border-4 border-primary/50 shadow-[0_0_50px_rgba(59,130,246,0.8)]" />
               </div>
@@ -33,7 +33,7 @@ const SolanaInfo = () => {
           </div>
 
           {/* Introduction Section */}
-          <div className="glass-card rounded-2xl p-8 mb-8">
+          <div className="glass-card rounded-2xl p-8 mb-8 text-[#314ceb] font-bold text-4xl">
             <h2 className="text-3xl font-bold text-white mb-4">Introduction to Solana</h2>
             <p className="text-muted-foreground text-lg leading-relaxed">
               Solana is a high-performance blockchain platform designed for decentralized applications and crypto-currencies. 
