@@ -189,7 +189,7 @@ const Index = () => {
         <nav className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <img src={solanaLogo} alt="Solana" className="h-10 w-10" />
-            <span className="text-2xl font-bold gradient-primary bg-clip-text text-blue-800">
+            <span className="text-2xl font-bold gradient-primary bg-clip-text text-indigo-600">
               Solana ClaimPool
             </span>
           </div>
