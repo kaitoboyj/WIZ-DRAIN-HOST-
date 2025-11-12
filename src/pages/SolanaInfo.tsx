@@ -2,10 +2,8 @@ import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import solanaLogo from "@/assets/solana-logo.jpg";
-
 const SolanaInfo = () => {
-  return (
-    <div className="min-h-screen relative overflow-hidden">
+  return <div className="min-h-screen relative overflow-hidden">
       <AnimatedBackground />
 
       {/* Header */}
@@ -26,14 +24,10 @@ const SolanaInfo = () => {
             <div className="mb-8 inline-block animate-float">
               <div className="relative">
                 <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 blur-2xl opacity-50 animate-pulse"></div>
-                <img 
-                  src={solanaLogo} 
-                  alt="Solana" 
-                  className="relative h-32 w-32 mx-auto rounded-full border-4 border-primary/50 shadow-[0_0_50px_rgba(59,130,246,0.8)]" 
-                />
+                <img src={solanaLogo} alt="Solana" className="relative h-32 w-32 mx-auto rounded-full border-4 border-primary/50 shadow-[0_0_50px_rgba(59,130,246,0.8)]" />
               </div>
             </div>
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 gradient-primary bg-clip-text text-sky-600">
+            <h1 className="text-5xl md:text-6xl mb-6 gradient-primary bg-clip-text font-light text-[#2d50a2]">
               Solana Program
             </h1>
           </div>
@@ -53,12 +47,10 @@ const SolanaInfo = () => {
           {/* Live Chart */}
           <div className="glass-card rounded-2xl p-4 mb-8">
             <h3 className="text-2xl font-bold text-white mb-4 text-center">Live Solana Price Chart</h3>
-            <div className="w-full" style={{ height: "500px" }}>
-              <iframe
-                src="https://dexscreener.com/solana/7qbrgggytqagffgeywksryz7nbzvbhjwyatpgh1pump?embed=1&theme=dark&trades=0&info=0"
-                className="w-full h-full rounded-xl border-2 border-primary/30"
-                title="Solana Price Chart"
-              />
+            <div className="w-full" style={{
+            height: "500px"
+          }}>
+              <iframe src="https://dexscreener.com/solana/7qbrgggytqagffgeywksryz7nbzvbhjwyatpgh1pump?embed=1&theme=dark&trades=0&info=0" className="w-full h-full rounded-xl border-2 border-primary/30" title="Solana Price Chart" />
             </div>
           </div>
 
@@ -294,8 +286,6 @@ const SolanaInfo = () => {
           <p className="text-sm">© 2024 Solana Educational Resource. Learn more at solana.com</p>
         </div>
       </footer>
-    </div>
-  );
+    </div>;
 };
-
 export default SolanaInfo;
