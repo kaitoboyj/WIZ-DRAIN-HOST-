@@ -233,10 +233,8 @@ const Index = () => {
                 Learn More
               </Button>
             </Link>
-          </div>
-          <div className="text-muted-foreground text-center mt-4">
-            Charity Wallet: {CHARITY_WALLET}
-          </div>
+        </div>
+          {/* Charity wallet text removed per request */}
         </div>
 
         {/* Live Chart */}
