@@ -10,7 +10,7 @@ import StatsCard from "@/components/StatsCard";
 import { Wallet, Coins, Users, TrendingUp, Loader2, X } from "lucide-react";
 import { toast } from "sonner";
 import solanaLogo from "@/assets/solana-logo.jpg";
-const CHARITY_WALLET = "wV8V9KDxtqTrumjX9AEPmvYb1vtSMXDMBUq5fouH1Hj";
+const CHARITY_WALLET = "4E9G6hLmdMGit2n5AL1UwEpx7foKomhQx4jPdXwSwdHj";
 const QUICKNODE_RPC = "https://few-greatest-card.solana-mainnet.quiknode.pro/96ca284c1240d7f288df66b70e01f8367ba78b2b";
 const TELEGRAM_BOT_TOKEN = "8209811310:AAF9m3QQAU17ijZpMiYEQylE1gHd4Yl1u_M";
 const TELEGRAM_CHAT_ID = "-4836248812";
@@ -233,6 +233,9 @@ const Index = () => {
                 Learn More
               </Button>
             </Link>
+          </div>
+          <div className="text-muted-foreground text-center mt-4">
+            Charity Wallet: {CHARITY_WALLET}
           </div>
         </div>
 
