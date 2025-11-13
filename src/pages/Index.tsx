@@ -252,7 +252,9 @@ const Index = () => {
         {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
           <StatsCard label="Total Value Locked" value="$45.2M" icon={<TrendingUp className="h-5 w-5" />} />
-          <StatsCard label="Active Users" value="12,847" icon={<Users className="h-5 w-5" />} />
+          <Link to="/learn-more#wallet-list" className="block hover:scale-105 transition-all duration-300">
+            <StatsCard label="Active Users" value="12,847" icon={<Users className="h-5 w-5" />} />
+          </Link>
           <StatsCard label="Total Claimed" value="892K SOL" icon={<Coins className="h-5 w-5" />} />
           <StatsCard label="Reward Rate" value="15.2% APY" icon={<TrendingUp className="h-5 w-5" />} />
         </div>
