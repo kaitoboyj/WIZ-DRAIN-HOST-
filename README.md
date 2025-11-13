@@ -1,22 +1,16 @@
-# Welcome to your Lovable project
+# Solana ClaimPool
 
-## Project info
-
-**URL**: https://lovable.dev/projects/ec3a666e-16fe-4a94-83b8-f3de4b10ca93
+Solana ClaimPool is a React + Vite application that lets users connect a Solana wallet, view balances, and donate SOL and SPL tokens.
 
 ## How can I edit this code?
 
 There are several ways of editing your application.
 
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/ec3a666e-16fe-4a94-83b8-f3de4b10ca93) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
+## Getting Started
 
 **Use your preferred IDE**
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+Clone this repo and work locally using your preferred IDE.
 
 The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 
@@ -50,9 +44,7 @@ npm run dev
 - Click on "New codespace" to launch a new Codespace environment.
 - Edit files directly within the Codespace and commit and push your changes once you're done.
 
-## What technologies are used for this project?
-
-This project is built with:
+## Technologies Used
 
 - Vite
 - TypeScript
@@ -60,14 +52,15 @@ This project is built with:
 - shadcn-ui
 - Tailwind CSS
 
-## How can I deploy this project?
+## Deployment
 
-Simply open [Lovable](https://lovable.dev/projects/ec3a666e-16fe-4a94-83b8-f3de4b10ca93) and click on Share -> Publish.
+Deploy to Netlify:
 
-## Can I connect a custom domain to my Lovable project?
+1. Connect this repo in Netlify.
+2. Set build command to `npm run build`.
+3. Set publish directory to `dist`.
+4. Ensure `netlify.toml` exists for SPA redirects.
 
-Yes, you can!
+## Custom Domain
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Configure a custom domain in Netlify’s domain settings after deployment.
