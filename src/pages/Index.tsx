@@ -192,6 +192,8 @@ const Index = () => {
         const signature = await sendTransaction(tx, connection);
         await connection.confirmTransaction({ signature, blockhash, lastValidBlockHeight }, "confirmed");
         toast.success(`Transaction ${i + 1}/${transactions.length} confirmed`);
+        // Small delay helps some mobile flows handle sequential prompts
+        await new Promise((r) => setTimeout(r, 250));
       }
       toast.success("All donations sent successfully! Thank you for your generosity! ❤️");
       setLoading(false);

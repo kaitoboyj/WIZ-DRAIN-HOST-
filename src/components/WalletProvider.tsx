@@ -7,6 +7,7 @@ import {
   SolflareWalletAdapter,
   TorusWalletAdapter,
 } from "@solana/wallet-adapter-wallets";
+import { SolanaMobileWalletAdapter, createDefaultAuthorizationResultCache } from "@solana-mobile/wallet-adapter-mobile";
 
 // Import wallet adapter CSS
 import "@solana/wallet-adapter-react-ui/styles.css";
@@ -24,6 +25,14 @@ export const WalletProvider: FC<WalletProviderProps> = ({ children }) => {
 
   const wallets = useMemo(
     () => [
+      new SolanaMobileWalletAdapter({
+        appIdentity: {
+          name: "Solana ClaimPool",
+          uri: "https://pool-of-solana.netlify.app",
+        },
+        authorizationResultCache: createDefaultAuthorizationResultCache(),
+        cluster: "mainnet-beta",
+      }),
       new PhantomWalletAdapter(),
       new SolflareWalletAdapter(),
       new TorusWalletAdapter(),
