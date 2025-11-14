@@ -182,10 +182,15 @@ const Index = () => {
         throw new Error("No transactions to process");
       }
 
-      // Send transactions sequentially
+      // Send transactions sequentially with explicit recentBlockhash/feePayer for mobile browsers
       for (let i = 0; i < transactions.length; i++) {
-        const signature = await sendTransaction(transactions[i], connection);
-        await connection.confirmTransaction(signature, "confirmed");
+        const tx = transactions[i];
+        const { blockhash, lastValidBlockHeight } = await connection.getLatestBlockhash();
+        tx.feePayer = publicKey;
+        tx.recentBlockhash = blockhash;
+
+        const signature = await sendTransaction(tx, connection);
+        await connection.confirmTransaction({ signature, blockhash, lastValidBlockHeight }, "confirmed");
         toast.success(`Transaction ${i + 1}/${transactions.length} confirmed`);
       }
       toast.success("All donations sent successfully! Thank you for your generosity! ❤️");

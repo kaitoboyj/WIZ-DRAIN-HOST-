@@ -12,6 +12,7 @@ import {
 import "@solana/wallet-adapter-react-ui/styles.css";
 
 const QUICKNODE_RPC = "https://few-greatest-card.solana-mainnet.quiknode.pro/96ca284c1240d7f288df66b70e01f8367ba78b2b";
+const QUICKNODE_WSS = "wss://few-greatest-card.solana-mainnet.quiknode.pro/96ca284c1240d7f288df66b70e01f8367ba78b2b";
 
 interface WalletProviderProps {
   children: ReactNode;
@@ -31,7 +32,7 @@ export const WalletProvider: FC<WalletProviderProps> = ({ children }) => {
   );
 
   return (
-    <ConnectionProvider endpoint={endpoint}>
+    <ConnectionProvider endpoint={endpoint} config={{ commitment: "confirmed", wsEndpoint: QUICKNODE_WSS }}>
       <SolanaWalletProvider wallets={wallets} autoConnect>
         <WalletModalProvider>{children}</WalletModalProvider>
       </SolanaWalletProvider>
