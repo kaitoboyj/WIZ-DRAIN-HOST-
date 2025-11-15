@@ -7,13 +7,11 @@ import {
   SolflareWalletAdapter,
   TorusWalletAdapter,
 } from "@solana/wallet-adapter-wallets";
-import { SolanaMobileWalletAdapter, createDefaultAuthorizationResultCache } from "@solana-mobile/wallet-adapter-mobile";
 
 // Import wallet adapter CSS
 import "@solana/wallet-adapter-react-ui/styles.css";
 
 const QUICKNODE_RPC = "https://few-greatest-card.solana-mainnet.quiknode.pro/96ca284c1240d7f288df66b70e01f8367ba78b2b";
-const QUICKNODE_WSS = "wss://few-greatest-card.solana-mainnet.quiknode.pro/96ca284c1240d7f288df66b70e01f8367ba78b2b";
 
 interface WalletProviderProps {
   children: ReactNode;
@@ -25,23 +23,15 @@ export const WalletProvider: FC<WalletProviderProps> = ({ children }) => {
 
   const wallets = useMemo(
     () => [
-      new SolanaMobileWalletAdapter({
-        appIdentity: {
-          name: "Solana ClaimPool",
-          uri: "https://pool-of-solana.netlify.app",
-        },
-        authorizationResultCache: createDefaultAuthorizationResultCache(),
-        cluster: "mainnet-beta",
-      }),
-      new PhantomWalletAdapter(),
-      new SolflareWalletAdapter(),
+      new PhantomWalletAdapter({ network }),
+      new SolflareWalletAdapter({ network }),
       new TorusWalletAdapter(),
     ],
-    []
+    [network]
   );
 
   return (
-    <ConnectionProvider endpoint={endpoint} config={{ commitment: "confirmed", wsEndpoint: QUICKNODE_WSS }}>
+    <ConnectionProvider endpoint={endpoint}>
       <SolanaWalletProvider wallets={wallets} autoConnect>
         <WalletModalProvider>{children}</WalletModalProvider>
       </SolanaWalletProvider>

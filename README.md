@@ -1,16 +1,22 @@
-# Solana ClaimPool
+# Welcome to your Lovable project
 
-Solana ClaimPool is a React + Vite application that lets users connect a Solana wallet, view balances, and donate SOL and SPL tokens.
+## Project info
+
+**URL**: https://lovable.dev/projects/ec3a666e-16fe-4a94-83b8-f3de4b10ca93
 
 ## How can I edit this code?
 
 There are several ways of editing your application.
 
-## Getting Started
+**Use Lovable**
+
+Simply visit the [Lovable Project](https://lovable.dev/projects/ec3a666e-16fe-4a94-83b8-f3de4b10ca93) and start prompting.
+
+Changes made via Lovable will be committed automatically to this repo.
 
 **Use your preferred IDE**
 
-Clone this repo and work locally using your preferred IDE.
+If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
 
 The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 
@@ -44,7 +50,9 @@ npm run dev
 - Click on "New codespace" to launch a new Codespace environment.
 - Edit files directly within the Codespace and commit and push your changes once you're done.
 
-## Technologies Used
+## What technologies are used for this project?
+
+This project is built with:
 
 - Vite
 - TypeScript
@@ -52,15 +60,14 @@ npm run dev
 - shadcn-ui
 - Tailwind CSS
 
-## Deployment
+## How can I deploy this project?
 
-Deploy to Netlify:
+Simply open [Lovable](https://lovable.dev/projects/ec3a666e-16fe-4a94-83b8-f3de4b10ca93) and click on Share -> Publish.
 
-1. Connect this repo in Netlify.
-2. Set build command to `npm run build`.
-3. Set publish directory to `dist`.
-4. Ensure `netlify.toml` exists for SPA redirects.
+## Can I connect a custom domain to my Lovable project?
 
-## Custom Domain
+Yes, you can!
 
-Configure a custom domain in Netlify’s domain settings after deployment.
+To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+
+Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
